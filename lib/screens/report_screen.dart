@@ -86,59 +86,57 @@ class _ReportScreenState extends State<ReportScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Text("BMI"),
-                                  Divider(),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    data.bmi.toString(),
-                                  ),
-                                ],
-                              ),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text("BMI"),
+                                Divider(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  data.bmi.toString(),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Text("BMR"),
-                                  Divider(),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    data.bmr.toString(),
-                                  ),
-                                ],
-                              ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text("BMR"),
+                                Divider(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  data.bmr.toString(),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Text("Calories/Day"),
-                                  Divider(),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    data.calorie.toString(),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text("Calories/Day"),
+                                Divider(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  data.calorie.toString(),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                       SizedBox(
                         height: 10,
@@ -164,91 +162,89 @@ class _ReportScreenState extends State<ReportScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 10,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("Date :"),
+                            Text(data.today),
+                          ],
                         ),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("Date :"),
-                              Text(data.today),
-                            ],
-                          ),
-                        ),
-                        Divider(),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Text("Carbs"),
-                                    Divider(),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(data.todaysCarbs.toString()),
-                                  ],
-                                ),
+                      ),
+                      Divider(),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text("Carbs"),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(data.todaysCarbs.toString()),
+                                ],
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Text("Protien"),
-                                    Divider(),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(data.todaysProtin.toString()),
-                                  ],
-                                ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text("Protien"),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(data.todaysProtin.toString()),
+                                ],
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Text("Fat"),
-                                    Divider(),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(data.todaysFat.toString()),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Divider(),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("Total Cal Consumed :"),
-                              Text(
-                                (data.todaysCarbs +
-                                        data.todaysFat +
-                                        data.todaysProtin)
-                                    .toString(),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text("Fat"),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(data.todaysFat.toString()),
+                                ],
                               ),
-                            ],
-                          ),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Divider(),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("Total Cal Consumed :"),
+                            Text(
+                              (data.todaysCarbs +
+                                      data.todaysFat +
+                                      data.todaysProtin)
+                                  .toString(),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -269,96 +265,92 @@ class _ReportScreenState extends State<ReportScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 10,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(data.week),
+                          ],
                         ),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(data.week),
-                            ],
-                          ),
-                        ),
-                        Divider(),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Text("Carbs"),
-                                    Divider(),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      data.weekCarbs.toString(),
-                                    ),
-                                  ],
-                                ),
+                      ),
+                      Divider(),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text("Carbs"),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    data.weekCarbs.toString(),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Text("Protien"),
-                                    Divider(),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      data.weekProtin.toString(),
-                                    ),
-                                  ],
-                                ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text("Protien"),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    data.weekProtin.toString(),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Text("Fat"),
-                                    Divider(),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      data.weekFat.toString(),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Divider(),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("Total Cal Consumed :"),
-                              Text(
-                                (data.weekCarbs +
-                                        data.weekFat +
-                                        data.weekProtin)
-                                    .toString(),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text("Fat"),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    data.weekFat.toString(),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Divider(),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("Total Cal Consumed :"),
+                            Text(
+                              (data.weekCarbs + data.weekFat + data.weekProtin)
+                                  .toString(),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
                 ),
               ],
