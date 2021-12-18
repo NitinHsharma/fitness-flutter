@@ -1,14 +1,24 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sqflite/sqflite.dart';
 
 class User {
-  static Future<bool> Signup(var username, var password) async {
+  static Future<bool> Signup(
+    var username,
+    var password,
+    var height,
+    var weight,
+    var age,
+    var gender,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
     bool doesExist = prefs.containsKey(username);
     if (doesExist) {
       return false;
     }
     prefs.setString(username, password);
+    prefs.setString("weight", weight);
+    prefs.setString("height", height);
+    prefs.setString("age", age);
+    prefs.setString("gender", gender);
 
     return true;
   }

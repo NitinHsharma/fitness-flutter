@@ -3,6 +3,7 @@
 import 'package:fitness/screens/bmi_screen.dart';
 import 'package:fitness/screens/constulation_screen.dart';
 import 'package:fitness/screens/fnq_screen.dart';
+import 'package:fitness/screens/report_screen.dart';
 import 'package:fitness/screens/workout_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -190,6 +191,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        // ignore: unnecessary_new
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ReportScreen(),
+                              ),
+                            );
+                          },
+                          child: Image(
+                            image: AssetImage(
+                              'assets/images/report.png',
+                            ),
+                            height: 100,
+                          ),
+                        ),
+                        Text(
+                          "Reports",
+                          style: textTheme.bodyText1,
+                        ),
+                      ],
+                    ),
                     Column(
                       children: <Widget>[
                         // ignore: unnecessary_new

@@ -53,7 +53,7 @@ class _FnQScreenState extends State<FnQScreen> {
         return false;
       },
       child: MaterialApp(
-        title: 'Fitness World',
+        title: 'Stay Fit',
         theme: ThemeData(
           primarySwatch: Colors.orange,
           textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
@@ -71,7 +71,7 @@ class _FnQScreenState extends State<FnQScreen> {
               onPressed: () => {},
             ),
             centerTitle: true,
-            title: Text('Fitenss World'),
+            title: Text('Stay Fit'),
             actions: <Widget>[
               IconButton(
                   onPressed: () {

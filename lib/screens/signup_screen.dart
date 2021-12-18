@@ -1,10 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'dart:math';
-
-import 'package:fluttertoast/fluttertoast.dart';
-
-import '../widget/customClipper.dart';
 import 'dashboard_screen.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    List<String> genders = ['Male', 'Female'];
     // ignore: unnecessary_new
     return new WillPopScope(
       onWillPop: () async {
@@ -56,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
-                            text: 'Fitness Application',
+                            text: 'Stay Fit',
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -215,11 +211,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                     SizedBox(width: 15),
                                     Expanded(
-                                      child: TextFormField(
-                                        controller: genderController,
-                                        obscureText: false,
+                                      child: DropdownButtonFormField(
+                                        value: 'Male',
+                                        items: genders
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                        onChanged: (newVal) {
+                                          setState(() {});
+                                        },
+                                        // controller: genderController,
+                                        // obscureText: false,
                                         validator: (text) {
-                                          if (text == null || text.isEmpty) {
+                                          if (text == null) {
                                             return 'Gender is empty';
                                           }
                                           return null;
@@ -401,9 +409,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // send error popup
       return;
     }
-    var valid =
-        await User.Signup(usernameController.text, passwordController.text);
-    print("Retun is  $valid");
+    var valid = await User.Signup(
+      usernameController.text,
+      passwordController.text,
+      heightController.text,
+      weightController.text,
+      ageController.text,
+      genderController.text,
+    );
     if (valid) {
       Navigator.pushReplacement(
         context,

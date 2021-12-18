@@ -35,7 +35,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         return false;
       },
       child: MaterialApp(
-        title: 'Fitness World',
+        title: 'Stay Fit',
         theme: ThemeData(
           primarySwatch: Colors.orange,
           textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
@@ -50,7 +50,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               onPressed: () => {},
             ),
             centerTitle: true,
-            title: Text('Welcome'),
+            title: Text('Stay Fit'),
             actions: <Widget>[
               IconButton(
                   onPressed: () {

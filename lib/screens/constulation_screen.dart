@@ -7,12 +7,20 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'welcome_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConstulationScreen extends StatefulWidget {
   const ConstulationScreen({Key? key}) : super(key: key);
 
   @override
   _ConstulationScreenState createState() => _ConstulationScreenState();
+}
+
+class contacts {
+  String name;
+  String phoneNumber;
+
+  contacts(this.name, this.phoneNumber);
 }
 
 class _ConstulationScreenState extends State<ConstulationScreen> {
@@ -23,6 +31,12 @@ class _ConstulationScreenState extends State<ConstulationScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    List<contacts> contact = [
+      contacts("Names", "Numbers"),
+      contacts("Allie Grater", "9876543210"),
+      contacts("Teri Dactyl.", "9876541230"),
+      contacts("Peg Legge", "9854376210"),
+    ];
     // ignore: unnecessary_new
     return new WillPopScope(
       onWillPop: () async {
@@ -48,7 +62,7 @@ class _ConstulationScreenState extends State<ConstulationScreen> {
               onPressed: () => {},
             ),
             centerTitle: true,
-            title: Text('Fitenss World'),
+            title: Text('Stay Fit'),
             actions: <Widget>[
               IconButton(
                   onPressed: () {
@@ -66,7 +80,7 @@ class _ConstulationScreenState extends State<ConstulationScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
                     child: Text(
                       'Consultation',
                       style: GoogleFonts.montserrat(
@@ -112,7 +126,7 @@ class _ConstulationScreenState extends State<ConstulationScreen> {
                       );
                     },
                   ),
-                  Padding(padding: EdgeInsets.all(8)),
+                  Padding(padding: EdgeInsets.all(2)),
                   Text(
                     "Free Consultation From Our Expert!",
                     style: TextStyle(
@@ -120,6 +134,77 @@ class _ConstulationScreenState extends State<ConstulationScreen> {
                       fontFamily: 'Montserrat',
                       fontSize: 20,
                     ),
+                  ),
+                  Padding(padding: EdgeInsets.all(8)),
+
+                  Table(
+                    columnWidths: const {
+                      0: FlexColumnWidth(0.3),
+                      1: FlexColumnWidth(1.0),
+                      2: FlexColumnWidth(0.9),
+                    },
+                    border: TableBorder.all(
+                      color: Colors.orange,
+                      width: 0,
+                    ),
+                    children: (contact)
+                        .map(
+                          (item) => TableRow(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 10),
+                                child: contact.indexOf(item) != 0
+                                    ? IconButton(
+                                        icon: Icon(
+                                          Icons.call,
+                                        ),
+                                        onPressed: () => {
+                                          launch('tel:${item.phoneNumber}'),
+                                        },
+                                      )
+                                    : Text(
+                                        "",
+                                      ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Center(
+                                  child: Text(
+                                    item.name.toString(),
+                                    style: GoogleFonts.montserrat(
+                                      textStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: contact.indexOf(item) == 0
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                        color: Colors.orange,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Center(
+                                  child: Text(
+                                    item.phoneNumber.toString(),
+                                    style: GoogleFonts.montserrat(
+                                      textStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: contact.indexOf(item) == 0
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                        color: Colors.orange,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // you can have more properties of course
+                            ],
+                          ),
+                        )
+                        .toList(),
                   ),
                   Image(image: AssetImage('assets/images/abc.jpg')),
                 ],

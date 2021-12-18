@@ -1,5 +1,6 @@
 import 'package:fitness/screens/dashboard_screen.dart';
 import 'package:fitness/screens/dietary_screen.dart';
+import 'package:fitness/screens/report_screen.dart';
 import 'package:fitness/screens/workout_screen.dart';
 import 'package:flutter/services.dart';
 
@@ -12,7 +13,7 @@ void main() {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return MaterialApp(
-      title: 'Fitness World',
+      title: 'Stay Fit',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(

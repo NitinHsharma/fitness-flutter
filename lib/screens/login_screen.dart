@@ -1,10 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'dart:math';
-
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../widget/customClipper.dart';
 import 'dashboard_screen.dart';
 import 'signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
         Fluttertoast.showToast(
             msg: "You are on login screen",
             toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
+            gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.black,
             textColor: Colors.white,
             fontSize: 16.0);
         return false;
@@ -60,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
-                          text: 'Fitness Application',
+                          text: 'Stay Fit',
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -244,31 +239,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              // Positioned(
-              //   top: 40,
-              //   left: 0,
-              //   child: InkWell(
-              //     onTap: () {
-              //       Navigator.pop(context);
-              //     },
-              //     child: Container(
-              //       padding: EdgeInsets.symmetric(horizontal: 10),
-              //       child: Row(
-              //         children: <Widget>[
-              //           Container(
-              //             padding:
-              //                 EdgeInsets.only(left: 0, top: 10, bottom: 10),
-              //             child: Icon(Icons.keyboard_arrow_left,
-              //                 color: Colors.black),
-              //           ),
-              //           Text('Back',
-              //               style: TextStyle(
-              //                   fontSize: 12, fontWeight: FontWeight.w500))
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

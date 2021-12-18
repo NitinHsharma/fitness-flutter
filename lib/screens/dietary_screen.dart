@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new
-import 'package:fitness/screens/dashboard_screen.dart';
+// ignore_for_file:  unnecessary_new, prefer_const_literals_to_create_immutables, prefer_const_constructors
+import 'package:fitness/utils/reports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,8 +16,17 @@ class DietaryScreen extends StatefulWidget {
 class Meal {
   String name;
   String qty;
+  double carbs;
+  double protein;
+  double fat;
 
-  Meal(this.name, this.qty);
+  Meal(
+    this.name,
+    this.qty,
+    this.carbs,
+    this.protein,
+    this.fat,
+  );
 }
 
 class _DietaryScreenState extends State<DietaryScreen> {
@@ -43,7 +52,7 @@ class _DietaryScreenState extends State<DietaryScreen> {
         return false;
       },
       child: MaterialApp(
-        title: 'Fitness World',
+        title: 'Stay Fit',
         theme: ThemeData(
           primarySwatch: Colors.orange,
           textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
@@ -58,7 +67,7 @@ class _DietaryScreenState extends State<DietaryScreen> {
               onPressed: () => {},
             ),
             centerTitle: true,
-            title: Text('Welcome'),
+            title: Text('Stay Fit'),
             actions: <Widget>[
               IconButton(
                   onPressed: () {
@@ -73,25 +82,6 @@ class _DietaryScreenState extends State<DietaryScreen> {
             ],
           ),
           body: Container(
-            // decoration: BoxDecoration(
-            //   borderRadius: const BorderRadius.all(Radius.circular(5)),
-            //   boxShadow: <BoxShadow>[
-            //     BoxShadow(
-            //       color: Colors.grey.shade200,
-            //       offset: const Offset(2, 4),
-            //       blurRadius: 5,
-            //       spreadRadius: 2,
-            //     )
-            //   ],
-            //   gradient: const LinearGradient(
-            //     begin: Alignment.topCenter,
-            //     end: Alignment.bottomCenter,
-            //     colors: [
-            //       Color(0xffE6E6E6),
-            //       Color(0xff14279B),
-            //     ],
-            //   ),
-            // ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -285,8 +275,8 @@ class _DietaryScreenState extends State<DietaryScreen> {
                       Padding(padding: EdgeInsets.only(top: 40)),
                       Table(
                         columnWidths: {
-                          0: FlexColumnWidth(0.4),
-                          1: FlexColumnWidth(1.0),
+                          0: FlexColumnWidth(1.4),
+                          1: FlexColumnWidth(0.5),
                           2: FlexColumnWidth(0.5),
                         },
                         border: TableBorder.all(
@@ -297,15 +287,6 @@ class _DietaryScreenState extends State<DietaryScreen> {
                             .map(
                               (item) => TableRow(
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: Icon(
-                                      report.indexOf(item) % 3 == 0
-                                          ? Icons.circle
-                                          : Icons.circle_outlined,
-                                      color: Colors.orange,
-                                    ),
-                                  ),
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                     child: Center(
@@ -342,6 +323,37 @@ class _DietaryScreenState extends State<DietaryScreen> {
                                       ),
                                     ),
                                   ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: report.indexOf(item) != 0
+                                        ? Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Center(
+                                              child: InkWell(
+                                                child: Icon(
+                                                  Icons.add_box_rounded,
+                                                  color: Colors.orange,
+                                                ),
+                                                onTap: () {
+                                                  updateDailyMeal(item);
+                                                },
+                                              ),
+                                            ),
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Add",
+                                              style: GoogleFonts.montserrat(
+                                                textStyle: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.orange,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                  ),
                                   // you can have more properties of course
                                 ],
                               ),
@@ -361,74 +373,91 @@ class _DietaryScreenState extends State<DietaryScreen> {
   }
 
   void updateMeal() {
-    List<Meal> temp = [Meal("Food", "qty")];
+    List<Meal> temp = [Meal("Food", "qty", 0.0, 0.0, 0.0)];
     if (_isVeg) {
       if (_allClicked) {
-        temp.add(Meal("Panner", "2"));
-        temp.add(Meal("Mashroom", "1"));
-        temp.add(Meal("Poha", "3"));
-        temp.add(Meal("Upma", "2"));
-        temp.add(Meal("Palak", "3"));
-        temp.add(Meal("Dal", "1"));
-        temp.add(Meal("Salad", "2"));
+        temp.add(Meal("Panner", "2", 30.0, 20.0, 10.0));
+        temp.add(Meal("Mashroom", "1", 40.0, 23.0, 9.0));
+        temp.add(Meal("Poha", "3", 19.0, 12.0, 10.2));
+        temp.add(Meal("Upma", "2", 23.0, 32.0, 1.0));
+        temp.add(Meal("Palak", "3", 19.0, 43.0, 8.0));
+        temp.add(Meal("Dal", "1", 63.0, 22.0, 2.0));
+        temp.add(Meal("Salad", "2", 23.0, 46.0, 0.0));
       } else if (_breakfastClicked) {
-        temp.add(Meal("Idli", "2"));
-        temp.add(Meal("Dosa", "1"));
-        temp.add(Meal("Banana", "2"));
-        temp.add(Meal("Apple", "1"));
-        temp.add(Meal("Poha", "3"));
-        temp.add(Meal("Upma", "2"));
-        temp.add(Meal("Cereals", "2"));
+        temp.add(Meal("Idli", "2", 94.0, 15.0, 2.0));
+        temp.add(Meal("Dosa", "1", 63.0, 20.0, 4.0));
+        temp.add(Meal("Banana", "2", 32.0, 15.0, 6.0));
+        temp.add(Meal("Apple", "1", 22.0, 31.0, 3.0));
+        temp.add(Meal("Poha", "3", 29.0, 20.0, 3.0));
+        temp.add(Meal("Upma", "2", 20.0, 46.0, 1.0));
+        temp.add(Meal("Cereals", "2", 10.0, 10.0, 9.0));
       } else if (_lunchClicked) {
-        temp.add(Meal("Panner", "2"));
-        temp.add(Meal("Soya", "1"));
-        temp.add(Meal("Mattar", "2"));
-        temp.add(Meal("Mashroom", "1"));
-        temp.add(Meal("Palak", "3"));
-        temp.add(Meal("Methi", "2"));
-        temp.add(Meal("Karela", "2"));
+        temp.add(Meal("Panner", "2", 74.0, 33.0, 2.0));
+        temp.add(Meal("Soya", "1", 23.0, 45.0, 21.0));
+        temp.add(Meal("Mattar", "2", 34.0, 32.0, 4.0));
+        temp.add(Meal("Mashroom", "1", 45.0, 43.0, 12.0));
+        temp.add(Meal("Palak", "3", 54.0, 63.0, 1.0));
+        temp.add(Meal("Methi", "2", 67.0, 12.0, 5.0));
+        temp.add(Meal("Karela", "2", 62.0, 67.0, 5.0));
       } else if (_dinnerClicked) {
-        temp.add(Meal("Roti", "2"));
-        temp.add(Meal("Rice", "1"));
-        temp.add(Meal("Salad", "2"));
-        temp.add(Meal("Dal", "1"));
-        temp.add(Meal("Rajma", "3"));
-        temp.add(Meal("Rasam", "2"));
-        temp.add(Meal("Rava", "2"));
+        temp.add(Meal("Roti", "2", 57.0, 34.0, 12.0));
+        temp.add(Meal("Rice", "1", 43.0, 12.0, 21.0));
+        temp.add(Meal("Salad", "2", 65.0, 22.0, 4.0));
+        temp.add(Meal("Dal", "1", 12.0, 23.0, 22.0));
+        temp.add(Meal("Rajma", "3", 23.0, 26.0, 34.0));
+        temp.add(Meal("Rasam", "2", 13.0, 40.0, 23.0));
+        temp.add(Meal("Rava", "2", 32.0, 23.0, 23.0));
       }
     } else {
       if (_allClicked) {
-        temp.add(Meal("Omlete", "1"));
-        temp.add(Meal("Fish", "1"));
-        temp.add(Meal("Kabab", "1"));
-        temp.add(Meal("Prons", "4"));
-        temp.add(Meal("Meat", "1"));
-        temp.add(Meal("Fried Chicken", "2"));
+        temp.add(Meal("Omlete", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Fish", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Kabab", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Prons", "4", 30.0, 20.0, 10.0));
+        temp.add(Meal("Meat", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Fried Chicken", "2", 30.0, 20.0, 10.0));
       } else if (_breakfastClicked) {
-        temp.add(Meal("Omlete", "1"));
-        temp.add(Meal("Egg", "2"));
-        temp.add(Meal("Pronos", "5"));
-        temp.add(Meal("Fish", "1"));
-        temp.add(Meal("Chicken", "2"));
-        temp.add(Meal("Kabab", "1"));
-        temp.add(Meal("Half fry", "1"));
+        temp.add(Meal("Omlete", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Egg", "2", 30.0, 20.0, 10.0));
+        temp.add(Meal("Pronos", "5", 30.0, 20.0, 10.0));
+        temp.add(Meal("Fish", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Chicken", "2", 30.0, 20.0, 10.0));
+        temp.add(Meal("Kabab", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Half fry", "1", 30.0, 20.0, 10.0));
       } else if (_lunchClicked) {
-        temp.add(Meal("Fried Chicken", "2"));
-        temp.add(Meal("FISH", "1"));
-        temp.add(Meal("Meat", "1"));
-        temp.add(Meal("Prons", "4"));
-        temp.add(Meal("Kabab", "3"));
+        temp.add(Meal("Fried Chicken", "2", 30.0, 20.0, 10.0));
+        temp.add(Meal("FISH", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Meat", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Prons", "4", 30.0, 20.0, 10.0));
+        temp.add(Meal("Kabab", "3", 30.0, 20.0, 10.0));
       } else if (_dinnerClicked) {
-        temp.add(Meal("Fried Chicken", "2"));
-        temp.add(Meal("FISH", "1"));
-        temp.add(Meal("Meat", "1"));
-        temp.add(Meal("Prons", "4"));
-        temp.add(Meal("Kabab", "3"));
+        temp.add(Meal("Fried Chicken", "2", 30.0, 20.0, 10.0));
+        temp.add(Meal("FISH", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Meat", "1", 30.0, 20.0, 10.0));
+        temp.add(Meal("Prons", "4", 30.0, 20.0, 10.0));
+        temp.add(Meal("Kabab", "3", 30.0, 20.0, 10.0));
       }
     }
 
     setState(() {
       report = temp;
     });
+  }
+
+  void updateDailyMeal(Meal item) async {
+    try {
+      await Reports.setReports(item.carbs, item.protein, item.fat);
+      print("item updated");
+      Fluttertoast.showToast(
+          msg: "You have successfully updated your meal",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    } catch (e) {
+      print("errro $e");
+    }
   }
 }

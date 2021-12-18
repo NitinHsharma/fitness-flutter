@@ -42,7 +42,7 @@ class _BmiScreenState extends State<BmiScreen> {
         return false;
       },
       child: MaterialApp(
-        title: 'Fitness World',
+        title: 'Stay Fit',
         theme: ThemeData(
           primarySwatch: Colors.orange,
           textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
@@ -57,7 +57,7 @@ class _BmiScreenState extends State<BmiScreen> {
               onPressed: () => {},
             ),
             centerTitle: true,
-            title: Text('Welcome'),
+            title: Text('Stay Fit'),
             actions: <Widget>[
               IconButton(
                   onPressed: () {
