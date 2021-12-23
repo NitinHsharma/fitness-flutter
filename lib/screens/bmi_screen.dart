@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:fitness/screens/dashboard_screen.dart';
+import 'package:fitness/utils/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'welcome_screen.dart';
 
@@ -183,6 +182,11 @@ class _BmiScreenState extends State<BmiScreen> {
       });
       return;
     }
+
+    User.Update(
+      height,
+      weight,
+    );
 
     setState(() {
       _bmi = weight / (height * height) * 10000;

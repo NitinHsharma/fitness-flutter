@@ -1,7 +1,3 @@
-import 'package:fitness/screens/dashboard_screen.dart';
-import 'package:fitness/screens/dietary_screen.dart';
-import 'package:fitness/screens/report_screen.dart';
-import 'package:fitness/screens/workout_screen.dart';
 import 'package:flutter/services.dart';
 
 import 'screens/welcome_screen.dart';
@@ -31,7 +27,6 @@ class MyApp extends StatelessWidget {
           bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
         ),
       ),
-      debugShowCheckedModeBanner: false,
       home: const WelcomeScreen(),
     );
   }

@@ -98,7 +98,6 @@ class _DietaryScreenState extends State<DietaryScreen> {
                         children: <Widget>[
                           Column(
                             children: <Widget>[
-                              // ignore: unnecessary_new
                               Text(
                                 "Meal Plan",
                                 style: GoogleFonts.montserrat(
@@ -270,8 +269,6 @@ class _DietaryScreenState extends State<DietaryScreen> {
                           ),
                         ],
                       ),
-
-                      // ignore: unnecessary_new
                       Padding(padding: EdgeInsets.only(top: 40)),
                       Table(
                         columnWidths: {
@@ -360,6 +357,19 @@ class _DietaryScreenState extends State<DietaryScreen> {
                             )
                             .toList(),
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "*Add items for report",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.orange,
+                          ),
+                        ),
+                      ),
                       Expanded(child: Container()),
                     ],
                   ),
@@ -377,7 +387,7 @@ class _DietaryScreenState extends State<DietaryScreen> {
     if (_isVeg) {
       if (_allClicked) {
         temp.add(Meal("Panner", "2", 30.0, 20.0, 10.0));
-        temp.add(Meal("Mashroom", "1", 40.0, 23.0, 9.0));
+        temp.add(Meal("Mushroom", "1", 40.0, 23.0, 9.0));
         temp.add(Meal("Poha", "3", 19.0, 12.0, 10.2));
         temp.add(Meal("Upma", "2", 23.0, 32.0, 1.0));
         temp.add(Meal("Palak", "3", 19.0, 43.0, 8.0));
@@ -394,8 +404,8 @@ class _DietaryScreenState extends State<DietaryScreen> {
       } else if (_lunchClicked) {
         temp.add(Meal("Panner", "2", 74.0, 33.0, 2.0));
         temp.add(Meal("Soya", "1", 23.0, 45.0, 21.0));
-        temp.add(Meal("Mattar", "2", 34.0, 32.0, 4.0));
-        temp.add(Meal("Mashroom", "1", 45.0, 43.0, 12.0));
+        temp.add(Meal("Peas", "2", 34.0, 32.0, 4.0));
+        temp.add(Meal("Mushroom", "1", 45.0, 43.0, 12.0));
         temp.add(Meal("Palak", "3", 54.0, 63.0, 1.0));
         temp.add(Meal("Methi", "2", 67.0, 12.0, 5.0));
         temp.add(Meal("Karela", "2", 62.0, 67.0, 5.0));
@@ -413,13 +423,13 @@ class _DietaryScreenState extends State<DietaryScreen> {
         temp.add(Meal("Omlete", "1", 30.0, 20.0, 10.0));
         temp.add(Meal("Fish", "1", 30.0, 20.0, 10.0));
         temp.add(Meal("Kabab", "1", 30.0, 20.0, 10.0));
-        temp.add(Meal("Prons", "4", 30.0, 20.0, 10.0));
+        temp.add(Meal("Prawns", "4", 30.0, 20.0, 10.0));
         temp.add(Meal("Meat", "1", 30.0, 20.0, 10.0));
         temp.add(Meal("Fried Chicken", "2", 30.0, 20.0, 10.0));
       } else if (_breakfastClicked) {
         temp.add(Meal("Omlete", "1", 30.0, 20.0, 10.0));
         temp.add(Meal("Egg", "2", 30.0, 20.0, 10.0));
-        temp.add(Meal("Pronos", "5", 30.0, 20.0, 10.0));
+        temp.add(Meal("Prawns", "5", 30.0, 20.0, 10.0));
         temp.add(Meal("Fish", "1", 30.0, 20.0, 10.0));
         temp.add(Meal("Chicken", "2", 30.0, 20.0, 10.0));
         temp.add(Meal("Kabab", "1", 30.0, 20.0, 10.0));
@@ -428,13 +438,13 @@ class _DietaryScreenState extends State<DietaryScreen> {
         temp.add(Meal("Fried Chicken", "2", 30.0, 20.0, 10.0));
         temp.add(Meal("FISH", "1", 30.0, 20.0, 10.0));
         temp.add(Meal("Meat", "1", 30.0, 20.0, 10.0));
-        temp.add(Meal("Prons", "4", 30.0, 20.0, 10.0));
+        temp.add(Meal("Prawns", "4", 30.0, 20.0, 10.0));
         temp.add(Meal("Kabab", "3", 30.0, 20.0, 10.0));
       } else if (_dinnerClicked) {
         temp.add(Meal("Fried Chicken", "2", 30.0, 20.0, 10.0));
         temp.add(Meal("FISH", "1", 30.0, 20.0, 10.0));
         temp.add(Meal("Meat", "1", 30.0, 20.0, 10.0));
-        temp.add(Meal("Prons", "4", 30.0, 20.0, 10.0));
+        temp.add(Meal("Prawns", "4", 30.0, 20.0, 10.0));
         temp.add(Meal("Kabab", "3", 30.0, 20.0, 10.0));
       }
     }
@@ -447,7 +457,6 @@ class _DietaryScreenState extends State<DietaryScreen> {
   void updateDailyMeal(Meal item) async {
     try {
       await Reports.setReports(item.carbs, item.protein, item.fat);
-      print("item updated");
       Fluttertoast.showToast(
           msg: "You have successfully updated your meal",
           toastLength: Toast.LENGTH_LONG,
@@ -456,8 +465,6 @@ class _DietaryScreenState extends State<DietaryScreen> {
           backgroundColor: Colors.black,
           textColor: Colors.white,
           fontSize: 16.0);
-    } catch (e) {
-      print("errro $e");
-    }
+    } catch (e) {}
   }
 }

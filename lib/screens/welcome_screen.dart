@@ -53,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                    text: 'Fit',
+                    text: 'Stay',
                     style: GoogleFonts.portLligatSans(
                       textStyle: Theme.of(context).textTheme.headline1,
                       fontSize: 30,
@@ -62,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     children: const [
                       TextSpan(
-                        text: 'ness',
+                        text: 'Fit',
                         style: TextStyle(color: Colors.black, fontSize: 30),
                       ),
                     ],

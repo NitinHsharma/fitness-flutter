@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dashboard_screen.dart';
 import 'welcome_screen.dart';
 import 'package:expandable/expandable.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class FnQScreen extends StatefulWidget {
   const FnQScreen({Key? key}) : super(key: key);

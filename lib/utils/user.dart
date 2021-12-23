@@ -23,7 +23,10 @@ class User {
     return true;
   }
 
-  static Future<bool> Login(var username, var password) async {
+  static Future<bool> Login(
+    var username,
+    var password,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
     bool doesExist = prefs.containsKey(username);
     if (doesExist) {
@@ -33,5 +36,15 @@ class User {
       }
     }
     return false;
+  }
+
+  static Future<bool> Update(
+    var height,
+    var weight,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString("weight", weight.toString());
+    prefs.setString("height", height.toString());
+    return true;
   }
 }

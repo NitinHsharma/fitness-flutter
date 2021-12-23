@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'dashboard_screen.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
@@ -122,16 +125,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 30,
+                                      width: 15,
                                     ),
                                     Expanded(
                                       child: TextFormField(
+                                        inputFormatters: [
+                                          // ignore: deprecated_member_use
+                                          WhitelistingTextInputFormatter(
+                                              RegExp(r"\d+([\.]\d+)?")),
+                                        ],
                                         controller: ageController,
                                         keyboardType: TextInputType.number,
                                         obscureText: false,
                                         validator: (text) {
                                           if (text == null || text.isEmpty) {
-                                            return 'Age is empty';
+                                            return 'Age is \n empty';
+                                          } else {
+                                            if (int.parse(text) < 12 ||
+                                                int.parse(text) > 100) {
+                                              return 'Age must be greater \n than 12 and less than 100';
+                                            }
                                           }
                                           return null;
                                         },
@@ -142,14 +155,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 15),
+                                    SizedBox(width: 1),
                                     Text(
                                       'Weight:',
                                       style: TextStyle(
                                         fontSize: 20,
                                       ),
                                     ),
-                                    SizedBox(width: 15),
+                                    SizedBox(width: 1),
                                     Expanded(
                                       child: TextFormField(
                                         controller: weightController,
@@ -157,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         obscureText: false,
                                         validator: (text) {
                                           if (text == null || text.isEmpty) {
-                                            return 'Age is empty';
+                                            return 'weight is \n empty';
                                           }
                                           return null;
                                         },
@@ -183,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fontSize: 20,
                                       ),
                                     ),
-                                    SizedBox(width: 10),
+                                    SizedBox(width: 1),
                                     Expanded(
                                       child: TextFormField(
                                         controller: heightController,
@@ -191,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         obscureText: false,
                                         validator: (text) {
                                           if (text == null || text.isEmpty) {
-                                            return 'Heigth is empty';
+                                            return 'Height is \n empty';
                                           }
                                           return null;
                                         },
@@ -202,14 +215,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 15),
+                                    SizedBox(width: 1),
                                     Text(
                                       'Gender:',
                                       style: TextStyle(
                                         fontSize: 20,
                                       ),
                                     ),
-                                    SizedBox(width: 15),
+                                    SizedBox(width: 1),
                                     Expanded(
                                       child: DropdownButtonFormField(
                                         value: 'Male',
@@ -424,6 +437,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
           builder: (context) => HomeScreen(),
         ),
       );
+    } else {
+      // send error popup
+      Fluttertoast.showToast(
+          msg: "User is already exist",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 }

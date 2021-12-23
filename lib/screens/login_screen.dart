@@ -210,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   alignment: Alignment.bottomCenter,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
+                                    children: const <Widget>[
                                       Text(
                                         'New User?',
                                         style: TextStyle(

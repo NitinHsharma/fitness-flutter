@@ -57,13 +57,9 @@ class Reports {
     String carbsKey = 'carbs_$today';
     String protinKey = 'protin_$today';
     String fatKey = 'fat_$today';
-    print(carbsKey);
     double todaysCarbs = await getSafeValue(carbsKey);
     double todaysProtin = await getSafeValue(protinKey);
     double todaysFat = await getSafeValue(fatKey);
-
-    print("todaysCarbs: $todaysCarbs");
-
     double weekCarbs = todaysCarbs;
     double weekProtin = todaysProtin;
     double weekFat = todaysFat;
@@ -98,8 +94,6 @@ class Reports {
       today,
       week,
     );
-
-    print("Sending ${returnObj.toString()}");
     return returnObj;
   }
 
@@ -107,7 +101,6 @@ class Reports {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       String? val = prefs.getString(key);
-      print("key $key and value $val");
       if (val == null) {
         return 0;
       }
@@ -130,7 +123,6 @@ class Reports {
     String carbsKey = 'carbs_${now.year}-${now.month}-${now.day}';
     String protinKey = 'protin_${now.year}-${now.month}-${now.day}';
     String fatKey = 'fat_${now.year}-${now.month}-${now.day}';
-    print("Setting $carbsKey");
     double carbs = await getSafeValue(carbsKey) + inputCarbs;
     double protin = await getSafeValue(protinKey) + inputProtein;
     double fat = await getSafeValue(fatKey) + inputFat;
@@ -146,12 +138,11 @@ class Reports {
     try {
       String? height = prefs.getString("height");
       String? weight = prefs.getString("weight");
-      int h = height == null ? 158 : int.parse(height);
-      int w = weight == null ? 75 : int.parse(weight);
-
-      return (w / (h * h) * 10000).ceilToDouble();
+      double h = height == null ? 158 : double.parse(height);
+      double w = weight == null ? 70 : double.parse(weight);
+      return double.parse((w / (h * h) * 10000).toStringAsFixed(2));
     } catch (e) {
-      return 0;
+      return 140;
     }
   }
 
@@ -166,7 +157,6 @@ class Reports {
     int a = age == null ? 18 : int.parse(age);
     double h = height == null ? 158 : double.parse(height);
     double w = weight == null ? 70 : double.parse(weight);
-
     if (gender == 'Male') {
       return (88.362 + (13.397 * w) + (4.799 * h) - (5.677 * a)).ceilToDouble();
     } else {
